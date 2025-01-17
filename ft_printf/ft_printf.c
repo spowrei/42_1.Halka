@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdarg.h>
-#include "ft_printf_utils.c" //!!!!!!! sil
+#include "ft_printf.h"
 
 void ft_format(va_list arg_list, char type)
 {

@@ -1,9 +1,9 @@
-//#include <unistd.h>
-#include <stdlib.h>
+#include <unistd.h>
+# include <stddef.h>
 
 size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -11,12 +11,12 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	ft_putchar(char c)
+void	ft_putchar(char c) //! return değerini düzelt
 {
 	write(1, &c, 1);
 }
 
-int	ft_putnbr(int n) //!gerekli mi
+int	ft_putint(int n)
 {
 	long	nb;
 	int len;
@@ -42,7 +42,7 @@ int	ft_putnbr(int n) //!gerekli mi
 	return (len);
 }
 
-void	ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
 	int	i;
 
@@ -53,11 +53,6 @@ void	ft_putstr(char *s)
 		write(1, s, i);
 	}
 	return (i);
-}
-
-int	ft_putint(int a)
-{
-	return (ft_putnbr(a));
 }
 
 int	ft_puthex(unsigned int a, char c)
