@@ -22,26 +22,28 @@ int ft_printf(const char *str, ...) //>  "yazi %c yazi\" yazi", 'm'
 {
 	va_list arg_list;
 	va_start(arg_list, str);
-	int len;
+	int return_value;
+	int ctrl;
 
-	len = 0;
+	ctrl = 0;
+	return_value = 0;
 	while (*str != '\0')
 	{
 		if (*str == '%')
 		{
 			str++;
-			len += ft_format(arg_list, *str);
+			ctrl = ft_format(arg_list, *str);
+			if (ctrl == -1)
+				return (-1);
+			return_value += ctrl;
 		}
 		else
-		{
-			len += ft_putchar(*str);
-		}
+			return_value += ft_putchar(*str);
 		if (*str != '\0')
 			str++;
 	}
-
 	va_end(arg_list);
-	return (len); //! duzelt
+	return (return_value); //! duzelt
 }
 
 int main()

@@ -4,7 +4,6 @@
 #include <stdarg.h>
 # include <stddef.h>
 
-size_t	ft_strlen(const char *s);
 int		ft_putchar(char c);
 int		ft_putint(int n, int len);
 int		ft_putstr(char *s);
