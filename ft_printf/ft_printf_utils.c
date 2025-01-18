@@ -1,44 +1,21 @@
 #include <unistd.h>
 # include <stddef.h>
+# include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_putchar(char c)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-void	ft_putchar(char c) //! return değerini düzelt
-{
-	write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 
 int	ft_putint(int n)
 {
-	long	nb;
-	int len;
+	int		len;
+	char	*num;
 
 	len = 0;
-	nb = n;
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		len++;
-		nb = (nb * -1);
-	}
-	if (nb < 10)
-	{
-		ft_putchar(nb + 48);
-		len++;	
-	}
-	if (nb > 9)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
+	num = ft_itoa(n);
+	len = ft_putstr(num);
+	free(num);
 	return (len);
 }
 
@@ -55,6 +32,17 @@ int	ft_putstr(char *s)
 	return (i);
 }
 
+int	ft_hex(unsigned int a, char *nums) //! tekrar bak recursion
+{
+	int	ret;
+
+	ret = 0;
+	if (a >= 16)
+		ret += ft_hex(a / 16, nums);
+	write(1, &nums[a % 16], 1);
+	return (ret + 1);
+}
+
 int	ft_puthex(unsigned int a, char c)
 {
 	if (c == 'X')
@@ -65,20 +53,12 @@ int	ft_puthex(unsigned int a, char c)
 		return (-1);
 }
 
-int	ft_hex(unsigned int a, char *nums) //! tekrar bak recursion
+int ft_putptr() //! yazz
 {
-	int	ret;
-
-	ret = 0;
-	if (a >= 16)
-		ret += ft_hex(a / 16, nums);
-
-		write(1, &nums[a % 16], 1);
-
-	return (ret + 1);
+	return (-1);
 }
 
-int ft_putptr() //! yazz
+int ft_putunsigned() //! yazz
 {
 	return (-1);
 }
