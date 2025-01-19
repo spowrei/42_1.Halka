@@ -6,12 +6,13 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:47:39 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/19 20:11:37 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/19 20:26:38 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <unistd.h>
+#include <stdlib.h>
 
 int	ft_putchar(char c)
 {
