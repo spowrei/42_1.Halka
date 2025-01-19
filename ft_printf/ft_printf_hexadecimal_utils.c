@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_hexadecimal.c                            :+:      :+:    :+:   */
+/*   ft_printf_hexadecimal_utils.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 20:11:43 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/19 20:12:00 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/19 20:41:05 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "ft_printf.h"
+#include <unistd.h>
 
 int	ft_hex(unsigned int a, char *nums)
 {
