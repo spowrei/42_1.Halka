@@ -43,13 +43,15 @@ int ft_printf(const char *str, ...) //>  "yazi %c yazi\" yazi", 'm'
 			str++;
 	}
 	va_end(arg_list);
-	return (return_value); //! duzelt
+	return (return_value);
 }
 
-int main()
-{	
-	int i = ft_printf("%d",123456789);
-	ft_printf(">> %d\n", i);
+#include <stdio.h>
+#include <limits.h>
+
+int main(void)
+{
+	
 
 	return (0);
 }

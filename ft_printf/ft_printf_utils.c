@@ -10,20 +10,20 @@ int	ft_putchar(char c)
 
 int	ft_putstr(char *s)
 {
-	int	i;
+	int	len;
 
-	i = -1;
+	len = -1;
 	if (s != NULL)
 	{
-		i = ft_strlen(s);
-		write(1, s, i);
+		len = ft_strlen(s);
+		write(1, s, len);
 	}
 	else
-		ft_putstr("(NULL)");
-	return (i);
+		ft_putstr("(Null)");
+	return (len);
 }
 
-int	ft_putint(int n)
+int	ft_putint(int n) 
 {
 	int		len;
 	char	*num;
@@ -35,15 +35,15 @@ int	ft_putint(int n)
 	return (len);
 }
 
-int	ft_hex(unsigned int a, char *nums) //! tekrar bak recursion
+int	ft_hex(unsigned int a, char *nums)
 {
-	int	ret;
+	int	len;
 
-	ret = 0;
+	len = 0;
 	if (a >= 16)
-		ret += ft_hex(a / 16, nums);
+		len += ft_hex(a / 16, nums);
 	write(1, &nums[a % 16], 1);
-	return (ret + 1);
+	return (len + 1);
 }
 
 int	ft_puthex(unsigned int a, char c)
@@ -56,53 +56,36 @@ int	ft_puthex(unsigned int a, char c)
 		return (-1);
 }
 
+int	ft_point(unsigned long ptr)
+{
+	int	len;
+
+	len = 0;
+	if (ptr >= 16)
+		len += ft_point(ptr / 16);
+	write(1, &"0123456789abcdef"[ptr % 16], 1);
+	return (len + 1);
+}
+
 int	ft_putptr(void *ptr)
 {
 	int	len;
-	int	ctrl;
-
-	len = 0;
-	ctrl = 0;
-	if (ft_putstr("0x") == -1) //! ne ALAKA
+	
+	if(ptr == NULL)
+		return (ft_putstr("(nil)"));
+	if (ft_putstr("0x") == -1)
 		return (-1);
-	len += 2;
-	ctrl = ft_puthex((unsigned long)ptr, 'x');
-	if (ctrl == -1)
-		return (-1);
-	len += ctrl;
+	len = ft_point((unsigned long)ptr) +2;
 	return (len);
 }
 
-void ft_unsigned(long n)
+int	ft_putunsigned(unsigned int a)
 {
-	if (n >= 10)
-		ft_unsigned(n / 10);
-	ft_putchar ('0' + n);
-}
-
-int ft_putunsigned(long n) //! duzelt
-{
-	int len;
+	int	len;
 
 	len = 0;
-	if (n<0 && n>=-4294967296)
-		n=4294967296-n;
-	else if (n>429496725)
-		n-=429496725; 
-	else if (n<-4294967296)
-		n+=-4294967296;
-	if (n==-4294967296)
-		return(ft_putstr("-4294967296"));
-	else if(n<0)
-	{
-		len += ft_putchar('-');
-		n*=-1;
-	}
-	ft_unsigned(n);
-	while(n>0)
-	{
-		len++;
-		n/=10;
-	}
-	return (len);
+	if (a >= 10)
+		len += ft_putunsigned(a / 10);
+	write(1, &"0123456789"[a % 10], 1);
+	return (len + 1);
 }

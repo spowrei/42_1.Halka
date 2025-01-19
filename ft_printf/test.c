@@ -1,10 +1,15 @@
 
 
 #include <stdio.h>
+#include <unistd.h>
+
+
+
 int main()
 {
-	long int a = -4294967296*2+1;
-	printf("return: %u\n",a);
+	void * p = NULL;
+	printf("%p\n", p);
+
 	return 0;
 }
 
