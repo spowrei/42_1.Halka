@@ -1,13 +1,26 @@
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/19 19:46:52 by mukaplan          #+#    #+#             */
+/*   Updated: 2025/01/19 19:54:05 by mukaplan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_format(va_list arg_list, char type)
+#include "ft_printf.h"
+#include <stdarg.h>
+
+int	ft_format(va_list arg_list, char type)
 {
 	if (type == 'c')
 		return (ft_putchar(va_arg((arg_list), int)));
 	else if (type == 's')
 		return (ft_putstr(va_arg((arg_list), char *)));
 	else if (type == 'p')
-		return (ft_putptr(va_arg((arg_list), unsigned long), 1));
+		return (ft_putptr(va_arg((arg_list), void *)));
 	else if (type == 'i' || type == 'd')
 		return (ft_putint(va_arg((arg_list), int), 0));
 	else if (type == 'u')
@@ -18,13 +31,13 @@ int ft_format(va_list arg_list, char type)
 		return (ft_putchar('%'));
 }
 
-int ft_printf(const char *str, ...) //>  "yazi %c yazi\" yazi", 'm'
+int	ft_printf(const char *str, ...)
 {
-	va_list arg_list;
-	va_start(arg_list, str);
-	int return_value;
-	int ctrl;
+	va_list	arg_list;
+	int		return_value;
+	int		ctrl;
 
+	va_start(arg_list, str);
 	ctrl = 0;
 	return_value = 0;
 	while (*str != '\0')
@@ -44,14 +57,4 @@ int ft_printf(const char *str, ...) //>  "yazi %c yazi\" yazi", 'm'
 	}
 	va_end(arg_list);
 	return (return_value);
-}
-
-#include <stdio.h>
-#include <limits.h>
-
-int main(void)
-{
-	
-
-	return (0);
 }

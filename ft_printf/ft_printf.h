@@ -1,15 +1,27 @@
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/19 19:43:02 by mukaplan          #+#    #+#             */
+/*   Updated: 2025/01/19 19:48:34 by mukaplan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdarg.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
 # include <stddef.h>
 
-int		ft_putchar(char c);
-int		ft_putint(int n, int len);
-int		ft_putstr(char *s);
-int		ft_puthex(unsigned int a, char c);
-int		ft_hex(unsigned int a, char *nums);
-int		ft_putptr();
-int		ft_putunsigned();
+int	ft_putchar(char c);
+int	ft_putint(int n, int len);
+int	ft_putstr(char *s);
+int	ft_hex(unsigned int a, char *nums);
+int	ft_puthex(unsigned int a, char c);
+int	ft_ptr(unsigned int a);
+int	ft_putptr(void *ptr);
+int	ft_putunsigned(unsigned int a);
 
 #endif 
