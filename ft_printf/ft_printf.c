@@ -6,7 +6,7 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:46:52 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/19 19:54:05 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:22:53 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_format(va_list arg_list, char type)
 	else if (type == 'p')
 		return (ft_putptr(va_arg((arg_list), void *)));
 	else if (type == 'i' || type == 'd')
-		return (ft_putint(va_arg((arg_list), int), 0));
+		return (ft_putint(va_arg((arg_list), int)));
 	else if (type == 'u')
 		return (ft_putunsigned(va_arg((arg_list), unsigned int)));
 	else if (type == 'x' || type == 'X')
