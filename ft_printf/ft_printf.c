@@ -6,7 +6,7 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:46:52 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/20 13:22:53 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:12:44 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	ft_format(va_list arg_list, char type)
 {
 	if (type == 'c')
-		return (ft_putchar(va_arg((arg_list), int)));
+		return (ft_putchar(va_arg((arg_list), char)));
 	else if (type == 's')
 		return (ft_putstr(va_arg((arg_list), char *)));
 	else if (type == 'p')
@@ -27,8 +27,10 @@ int	ft_format(va_list arg_list, char type)
 		return (ft_putunsigned(va_arg((arg_list), unsigned int)));
 	else if (type == 'x' || type == 'X')
 		return (ft_puthex(va_arg((arg_list), unsigned int), type));
-	else
+	else if (type == '%')
 		return (ft_putchar('%'));
+	else
+		return (-1);
 }
 
 int	ft_printf(const char *str, ...)
@@ -37,6 +39,8 @@ int	ft_printf(const char *str, ...)
 	int		return_value;
 	int		ctrl;
 
+	if (str == NULL)
+		return (-1);
 	va_start(arg_list, str);
 	ctrl = 0;
 	return_value = 0;

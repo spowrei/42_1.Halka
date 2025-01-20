@@ -6,7 +6,7 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:47:39 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/20 12:09:46 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/20 21:59:36 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_putstr(char *s)
 
 	len = 0;
 	if (s == NULL)
-		return (ft_putstr("(Null)"));
+		return (ft_putstr("(null)"));
 	while (s[len] != '\0')
 		len++;
 	return (write(1, s, len));
