@@ -25,7 +25,7 @@ char	*read_line(int fd, char *stack)
 	return (stack);
 }
 
-char	*crop_line(char *stack)
+char	*crop_line(char *stack, int *remainings)
 {
 	char	*line;
 	int		linelen;
@@ -43,6 +43,7 @@ char	*crop_line(char *stack)
 		line[i] = stack[i];
 		i++;
 	}
+	*remainings = i;
 	if (stack[i] == '\n')
 	{
 		line[i] = stack[i];
@@ -52,29 +53,25 @@ char	*crop_line(char *stack)
 	return (line);
 }
 
-char	*remaining_part(char *stack)
+char	*remaining_part(char *stack, int remainings)
 {
-	int		i;
 	int		j;
 	char	*rest;
 
 	if (!stack)
 		return (NULL);
-	i = 0;
-	while (stack[i] != '\n' && stack[i] != '\0')
-		i++;
-	if (stack[i] == '\0')
+	if (stack[remainings] == '\0')
 	{
 		free(stack);
 		return (NULL);
 	}
-	rest = malloc(sizeof(char) * (ft_strlen(stack) - i + 1));
+	rest = malloc(sizeof(char) * (ft_strlen(stack) - remainings));
 	if (!rest)
 		return (NULL);
-	i++;
+	remainings++;
 	j = 0;
-	while (stack[i])
-		rest[j++] = stack[i++];
+	while (stack[remainings] != '\0')
+		rest[j++] = stack[remainings++];
 	rest[j] = '\0';
 	free(stack);
 	return (rest);
@@ -84,6 +81,7 @@ char	*get_next_line(int fd)
 {
 	static char	*stack;
 	char		*line;
+	int remainings;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -97,7 +95,8 @@ char	*get_next_line(int fd)
 	stack = read_line(fd, stack);
 	if (!stack)
 		return (NULL);
-	line = crop_line(stack);
-	stack = remaining_part(stack);
+	remainings = 0;
+	line = crop_line(stack, &remainings);
+	stack = remaining_part(stack, remainings);
 	return (line);
 }

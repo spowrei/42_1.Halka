@@ -8,8 +8,8 @@
 #endif
 
 char	*read_line(int fd, char *stack);
-char	*crop_line(char *stack);
-char	*remaining_part(char *str);
+char	*crop_line(char *stack, int *remainings);
+char	*remaining_part(char *str, int remainings);
 char	*get_next_line(int fd);
 
 int		ft_strlen(char *str);
