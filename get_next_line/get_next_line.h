@@ -1,12 +1,16 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFFER_SIZE 4
+#include <stdlib.h>
 
-char	*get_next_line(int fd);
-char	*get_line(char *stack);
-char	*new_line(char *str);
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 4
+#endif
+
 char	*read_line(int fd, char *stack);
+char	*crop_line(char *stack);
+char	*remaining_part(char *str);
+char	*get_next_line(int fd);
 
 int		ft_strlen(char *str);
 int		ft_linelen(char *str);

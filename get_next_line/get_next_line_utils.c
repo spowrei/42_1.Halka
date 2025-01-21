@@ -1,5 +1,4 @@
-#include "get_next_line.h"
-#include <stdlib.h>
+#include "get_next_line.h" //! gerek var mı
 
 int	ft_strlen(char *str)
 {

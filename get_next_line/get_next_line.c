@@ -1,21 +1,16 @@
 #include "get_next_line.h"
-#include <fcntl.h> //> gerek var mı #include <stddef.h> koy yerine ?
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include <unistd.h> 
 
 char	*read_line(int fd, char *stack)
 {
 	char	*buffer;
 	int		read_byte;
 
-	if (!stack)
-		return (NULL);
 	read_byte = 1;
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	while (!ft_strchr(stack, '\n') && read_byte != 0) //! stack başlatılmadan işlem görüyor!!
+	while (!ft_strchr(stack, '\n') && read_byte != 0)
 	{
 		read_byte = read(fd, buffer, BUFFER_SIZE);
 		if (read_byte == -1)
@@ -30,35 +25,7 @@ char	*read_line(int fd, char *stack)
 	return (stack);
 }
 
-char	*new_line(char *str)
-{
-	int		i;
-	int		j;
-	char	*rest;
-
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (str[i] != '\n' && str[i])
-		i++;
-	if (str[i] == '\0')
-	{
-		free(str);
-		return (NULL);
-	}
-	rest = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
-	if (!rest)
-		return (NULL);
-	i++;
-	j = 0;
-	while (str[i])
-		rest[j++] = str[i++];
-	rest[j] = '\0';
-	free(str);
-	return (rest);
-}
-
-char	*get_line(char *stack)
+char	*crop_line(char *stack)
 {
 	char	*line;
 	int		linelen;
@@ -68,7 +35,7 @@ char	*get_line(char *stack)
 		return (NULL);
 	i = 0;
 	linelen = ft_linelen(stack);
-	line = malloc(sizeof(char) * (linelen + 2)); //>  neden + 2
+	line = malloc(sizeof(char) * (linelen + 2)); //> + \n + \0 için +2
 	if (!line)
 		return (NULL);
 	while (stack[i] != '\0' && stack[i] != '\n')
@@ -85,6 +52,34 @@ char	*get_line(char *stack)
 	return (line);
 }
 
+char	*remaining_part(char *stack)
+{
+	int		i;
+	int		j;
+	char	*rest;
+
+	if (!stack)
+		return (NULL);
+	i = 0;
+	while (stack[i] != '\n' && stack[i] != '\0')
+		i++;
+	if (stack[i] == '\0')
+	{
+		free(stack);
+		return (NULL);
+	}
+	rest = malloc(sizeof(char) * (ft_strlen(stack) - i + 1));
+	if (!rest)
+		return (NULL);
+	i++;
+	j = 0;
+	while (stack[i])
+		rest[j++] = stack[i++];
+	rest[j] = '\0';
+	free(stack);
+	return (rest);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*stack;
@@ -92,32 +87,17 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	if (stack == NULL)
+	{
+		stack = (char *)malloc(1 * sizeof(char));
+		if (stack == NULL)
+			return (NULL);
+		stack[0] = '\0';
+	}
 	stack = read_line(fd, stack);
 	if (!stack)
 		return (NULL);
-	line = get_line(stack);
-	stack = new_line(stack);
+	line = crop_line(stack);
+	stack = remaining_part(stack);
 	return (line);
-}
-
-int main()
-{
-    int fd = open("test.txt", O_RDONLY);
-    char *line;
-    
-    int i = 0;
-    while (i<5)
-    {
-		line = get_next_line(fd);
-		if (!line)
-		{
-			printf("HATAA!!!\n");
-			return (0);
-		}
-        printf("%s", line);
-        free(line);
-		i++;
-    }
-	close(fd);
-    return (0);
 }
