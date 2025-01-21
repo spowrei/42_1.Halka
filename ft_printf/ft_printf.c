@@ -6,7 +6,7 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:46:52 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/20 22:12:44 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/21 20:50:02 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 int	ft_format(va_list arg_list, char type)
 {
+	int fail;
+	
+	fail = 0;
 	if (type == 'c')
 		return (ft_putchar(va_arg((arg_list), char)));
 	else if (type == 's')
@@ -22,9 +25,9 @@ int	ft_format(va_list arg_list, char type)
 	else if (type == 'p')
 		return (ft_putptr(va_arg((arg_list), void *)));
 	else if (type == 'i' || type == 'd')
-		return (ft_putint(va_arg((arg_list), int)));
+		return (ft_putint(va_arg((arg_list), int), &fail) && !fail);
 	else if (type == 'u')
-		return (ft_putunsigned(va_arg((arg_list), unsigned int)));
+		return (ft_putunsigned(va_arg((arg_list), unsigned int), &fail) && !fail);
 	else if (type == 'x' || type == 'X')
 		return (ft_puthex(va_arg((arg_list), unsigned int), type));
 	else if (type == '%')

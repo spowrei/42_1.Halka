@@ -6,7 +6,7 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:43:02 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/20 13:22:33 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/21 20:48:36 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@
 int	ft_format(va_list arg_list, char type);
 int	ft_printf(const char *str, ...);
 int	ft_putchar(char c);
-int	ft_putint(int n);
+int	ft_putint(int n, int *fail);
 int	ft_putstr(char *s);
-int	ft_hex(unsigned int a, char *nums);
 int	ft_puthex(unsigned int a, char c);
-int	ft_ptr(unsigned int a);
 int	ft_putptr(void *ptr);
-int	ft_putunsigned(unsigned int n);
+int	ft_putunsigned(unsigned int n, int *fail);
 
 #endif 

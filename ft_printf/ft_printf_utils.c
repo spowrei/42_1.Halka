@@ -6,7 +6,7 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:47:39 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/20 21:59:36 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/21 20:45:11 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_putstr(char *s)
 	return (write(1, s, len));
 }
 
-int	ft_putint(int n)
+int	ft_putint(int n, int *fail)
 {
 	int	len;
 
@@ -43,18 +43,20 @@ int	ft_putint(int n)
 		n *= -1;
 	}
 	if (n >= 10)
-		len += ft_putint(n / 10);
-	write(1, &"0123456789"[n % 10], 1);
+		len += ft_putint(n / 10, fail);
+	if(0 > write(1, &"0123456789"[n % 10], 1))
+		fail = 1;
 	return (len + 1);
 }
 
-int	ft_putunsigned(unsigned int n)
+int	ft_putunsigned(unsigned int n, int *fail)
 {
 	int	len;
 
 	len = 0;
 	if (n >= 10)
-		len += ft_putunsigned(n / 10);
-	write(1, &"0123456789"[n % 10], 1);
+		len += ft_putunsigned(n / 10, fail);
+	if(0 > write(1, &"0123456789"[n % 10], 1))
+		fail = 1;
 	return (len + 1);
 }
