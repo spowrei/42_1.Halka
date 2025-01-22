@@ -6,14 +6,13 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:43:02 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/22 11:39:33 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/22 22:23:57 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stddef.h>
 # include <stdarg.h>
 
 int	ft_format(va_list arg_list, char type);
