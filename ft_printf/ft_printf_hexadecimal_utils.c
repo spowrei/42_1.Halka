@@ -6,7 +6,7 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 20:11:43 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/21 20:47:18 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:44:08 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static	int	ft_hex(unsigned int a, char *nums, int *fail)
 
 int	ft_puthex(unsigned int a, char c)
 {
-	int ret;
-	int fail;
+	int	ret;
+	int	fail;
 
 	fail = 0;
 	if (c == 'X')
@@ -39,7 +39,7 @@ int	ft_puthex(unsigned int a, char c)
 		return (-1);
 	if (fail == 1)
 		return (-1);
-	return (ret);	
+	return (ret);
 }
 
 static	int	ft_point(unsigned long ptr, int *fail)
@@ -49,7 +49,7 @@ static	int	ft_point(unsigned long ptr, int *fail)
 	len = 0;
 	if (ptr >= 16)
 		len += ft_point(ptr / 16, fail);
-	if(0 > write(1, &"0123456789abcdef"[ptr % 16], 1))
+	if (0 > write(1, &"0123456789abcdef"[ptr % 16], 1))
 		*fail = 1;
 	return (len + 1);
 }
@@ -57,7 +57,7 @@ static	int	ft_point(unsigned long ptr, int *fail)
 int	ft_putptr(void *ptr)
 {
 	int	len;
-	int fail;
+	int	fail;
 
 	fail = 0;
 	if (ptr == NULL)

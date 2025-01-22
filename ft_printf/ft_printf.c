@@ -6,7 +6,7 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:46:52 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/21 20:50:02 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:55:18 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,30 @@
 
 int	ft_format(va_list arg_list, char type)
 {
-	int fail;
-	
+	int	fail;
+	int	ret;
+
+	ret = 0;
 	fail = 0;
 	if (type == 'c')
-		return (ft_putchar(va_arg((arg_list), char)));
+		return (ft_putchar(va_arg((arg_list), int)));
 	else if (type == 's')
 		return (ft_putstr(va_arg((arg_list), char *)));
 	else if (type == 'p')
 		return (ft_putptr(va_arg((arg_list), void *)));
-	else if (type == 'i' || type == 'd')
-		return (ft_putint(va_arg((arg_list), int), &fail) && !fail);
-	else if (type == 'u')
-		return (ft_putunsigned(va_arg((arg_list), unsigned int), &fail) && !fail);
 	else if (type == 'x' || type == 'X')
 		return (ft_puthex(va_arg((arg_list), unsigned int), type));
 	else if (type == '%')
 		return (ft_putchar('%'));
+	else if (type == 'i' || type == 'd')
+		ret = ft_putint(va_arg((arg_list), int), &fail);
+	else if (type == 'u')
+		ret = ft_putunsigned(va_arg((arg_list), unsigned int), &fail);
 	else
 		return (-1);
+	if (fail == 0)
+		return (ret);
+	return (-1);
 }
 
 int	ft_printf(const char *str, ...)
@@ -45,7 +50,6 @@ int	ft_printf(const char *str, ...)
 	if (str == NULL)
 		return (-1);
 	va_start(arg_list, str);
-	ctrl = 0;
 	return_value = 0;
 	while (*str != '\0')
 	{
