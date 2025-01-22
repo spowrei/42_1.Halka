@@ -24,7 +24,7 @@ char	*ft_strjoin(char *old_str, char *buff)
 {
 	size_t	i;
 	size_t	j;
-	char	*new_str;
+	char	*ret;
 
 	if (!old_str)
 	{
@@ -33,19 +33,19 @@ char	*ft_strjoin(char *old_str, char *buff)
 	}
 	if (!old_str || !buff)
 		return (NULL);
-	new_str = malloc(sizeof(char) * ((ft_strlen(old_str) + ft_strlen(buff)) + 1));
-	if (!new_str)
+	ret = malloc(sizeof(char) * ((ft_strlen(old_str) + ft_strlen(buff)) + 1));
+	if (!ret)
 		return (NULL);
 	i = -1;
 	j = 0;
 	if (old_str)
 		while (old_str[++i] != '\0') //> i = 0, old_str[i++] olamaz mı
-			new_str[i] = old_str[i];
+			ret[i] = old_str[i];
 	while (buff[j] != '\0')
-		new_str[i++] = buff[j++];
-	new_str[ft_strlen(old_str) + ft_strlen(buff)] = '\0'; //> newstr[i] = '\0' olamaz mı
+		ret[i++] = buff[j++];
+	ret[ft_strlen(old_str) + ft_strlen(buff)] = '\0'; //> newstr[i] = '\0' olamaz mı
 	free(old_str);
-	return (new_str);
+	return (ret);
 }
 
 char	*ft_strchr(char *str, char c)

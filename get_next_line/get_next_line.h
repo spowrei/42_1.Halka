@@ -1,11 +1,11 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#include <stdlib.h>
+# include <stdlib.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 4
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 char	*read_line(int fd, char *stack);
 char	*crop_line(char *stack, int *remainings);

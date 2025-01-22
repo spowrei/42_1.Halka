@@ -15,7 +15,8 @@ char	*read_line(int fd, char *stack)
 		read_byte = read(fd, buffer, BUFFER_SIZE);
 		if (read_byte == -1)
 		{
-			free(buffer);
+			free (stack);
+			free (buffer);
 			return (NULL);
 		}
 		buffer[read_byte] = '\0';
@@ -81,14 +82,14 @@ char	*get_next_line(int fd)
 {
 	static char	*stack;
 	char		*line;
-	int remainings;
+	int			remainings;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (stack == NULL)
+	if (!stack)
 	{
 		stack = (char *)malloc(1 * sizeof(char));
-		if (stack == NULL)
+		if (!stack)
 			return (NULL);
 		stack[0] = '\0';
 	}
