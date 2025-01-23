@@ -6,12 +6,12 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:46:52 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/22 11:55:18 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/22 22:24:06 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdarg.h>
+#include <stddef.h>
 
 int	ft_format(va_list arg_list, char type)
 {

@@ -6,12 +6,11 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:47:39 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/22 11:50:40 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/22 22:23:36 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stddef.h>
 
 int	ft_putchar(int c)
 {
