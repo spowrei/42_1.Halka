@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 13:54:11 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/23 13:54:13 by mukaplan         ###   ########.fr       */
+/*   Created: 2025/01/23 13:53:59 by mukaplan          #+#    #+#             */
+/*   Updated: 2025/01/23 13:54:00 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <unistd.h>
 
 static	char	*read_line(int fd, char *stack)
@@ -90,24 +90,26 @@ static	char	*remaining_part(char *stack, int remainings)
 
 char	*get_next_line(int fd)
 {
-	static char	*stack;
+	static char	*stack[4096];
 	char		*line;
 	int			remainings;
+	int			index;
 
+	index = fd - 2;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!stack)
+	if (!stack[index])
 	{
-		stack = (char *)malloc(1 * sizeof(char));
-		if (!stack)
+		stack[index] = (char *)malloc(1 * sizeof(char));
+		if (!stack[index])
 			return (NULL);
-		stack[0] = '\0';
+		stack[index][0] = '\0';
 	}
-	stack = read_line(fd, stack);
-	if (!stack)
+	stack[index] = read_line(fd, stack[index]);
+	if (!stack[index])
 		return (NULL);
 	remainings = 0;
-	line = crop_line(stack, &remainings);
-	stack = remaining_part(stack, remainings);
+	line = crop_line(stack[index], &remainings);
+	stack[index] = remaining_part(stack[index], remainings);
 	return (line);
 }
