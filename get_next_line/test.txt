@@ -1,9 +1,0 @@
-ABCDEFGH
-abcdefgh
-12345678
-********
-ABCDEFGH
-abcdefgh
-12345678
-*      *
-/*/*/*/*

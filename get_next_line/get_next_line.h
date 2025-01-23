@@ -4,12 +4,9 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 42
 # endif
 
-char	*read_line(int fd, char *stack);
-char	*crop_line(char *stack, int *remainings);
-char	*remaining_part(char *str, int remainings);
 char	*get_next_line(int fd);
 
 int		ft_strlen(char *str);

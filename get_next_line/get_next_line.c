@@ -1,7 +1,7 @@
 #include "get_next_line.h"
-#include <unistd.h> 
+#include <unistd.h>
 
-char	*read_line(int fd, char *stack)
+static	char	*read_line(int fd, char *stack)
 {
 	char	*buffer;
 	int		read_byte;
@@ -26,17 +26,15 @@ char	*read_line(int fd, char *stack)
 	return (stack);
 }
 
-char	*crop_line(char *stack, int *remainings)
+static	char	*crop_line(char *stack, int *remainings)
 {
 	char	*line;
-	int		linelen;
 	int		i;
 
 	if (!stack || stack[0] == '\0')
 		return (NULL);
 	i = 0;
-	linelen = ft_linelen(stack);
-	line = malloc(sizeof(char) * (linelen + 2)); //> + \n + \0 için +2
+	line = malloc(sizeof(char) * (ft_linelen(stack) + 2));
 	if (!line)
 		return (NULL);
 	while (stack[i] != '\0' && stack[i] != '\n')
@@ -54,9 +52,9 @@ char	*crop_line(char *stack, int *remainings)
 	return (line);
 }
 
-char	*remaining_part(char *stack, int remainings)
+static	char	*remaining_part(char *stack, int remainings)
 {
-	int		j;
+	int		i;
 	char	*rest;
 
 	if (!stack)
@@ -70,10 +68,10 @@ char	*remaining_part(char *stack, int remainings)
 	if (!rest)
 		return (NULL);
 	remainings++;
-	j = 0;
+	i = 0;
 	while (stack[remainings] != '\0')
-		rest[j++] = stack[remainings++];
-	rest[j] = '\0';
+		rest[i++] = stack[remainings++];
+	rest[i] = '\0';
 	free(stack);
 	return (rest);
 }

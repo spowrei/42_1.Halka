@@ -1,4 +1,4 @@
-#include "get_next_line.h" //! gerek var mı
+#include "get_next_line.h"
 
 int	ft_strlen(char *str)
 {
@@ -22,8 +22,8 @@ int	ft_linelen(char *str)
 
 char	*ft_strjoin(char *old_str, char *buff)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 	char	*ret;
 
 	if (!old_str)
@@ -39,11 +39,11 @@ char	*ft_strjoin(char *old_str, char *buff)
 	i = -1;
 	j = 0;
 	if (old_str)
-		while (old_str[++i] != '\0') //> i = 0, old_str[i++] olamaz mı
+		while (old_str[++i] != '\0')
 			ret[i] = old_str[i];
 	while (buff[j] != '\0')
 		ret[i++] = buff[j++];
-	ret[ft_strlen(old_str) + ft_strlen(buff)] = '\0'; //> newstr[i] = '\0' olamaz mı
+	ret[i] = '\0';
 	free(old_str);
 	return (ret);
 }
