@@ -6,14 +6,12 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:54:15 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/23 13:54:16 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:25:33 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-# include <stdlib.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

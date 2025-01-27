@@ -6,11 +6,11 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:54:09 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/23 13:54:10 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:26:26 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include <stdlib.h>
 
 int	ft_strlen(char *str)
 {
@@ -64,6 +64,8 @@ char	*ft_strchr(char *str, char c)
 {
 	char	*ptr;
 
+	if (!str)
+		return (NULL);
 	ptr = str;
 	while (*ptr)
 	{

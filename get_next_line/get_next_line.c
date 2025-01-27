@@ -6,11 +6,12 @@
 /*   By: mukaplan <mukaplan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:54:11 by mukaplan          #+#    #+#             */
-/*   Updated: 2025/01/23 13:54:13 by mukaplan         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:26:22 by mukaplan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdlib.h>
 #include <unistd.h>
 
 static	char	*read_line(int fd, char *stack)
@@ -90,7 +91,7 @@ static	char	*remaining_part(char *stack, int remainings)
 
 char	*get_next_line(int fd)
 {
-	static char	*stack;
+	static char	*stack = NULL;
 	char		*line;
 	int			remainings;
 
