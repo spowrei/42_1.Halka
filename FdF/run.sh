@@ -1,0 +1,1 @@
+cc draw.c minilibx-linux/libmlx.a -lX11 -lXext -lm -lbsd
